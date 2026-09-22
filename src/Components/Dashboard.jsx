@@ -2,14 +2,15 @@ import Buyerpage from "./Buyer/Buyerpage";
 import SellerPage from "./Seller/SellerPage";
 
 const Dashboard = ({ setPage }) => {
-  const role = localStorage.getItem("role");
-
-  if (!role) return <p>Loading...</p>;
+  const role = localStorage.getItem("role") || "buyer";
 
   return (
     <div>
-      {role === "buyer"  && <Buyerpage  setPage={setPage} />}
-      {role === "seller" && <SellerPage setPage={setPage} />}
+      {role === "seller" ? (
+        <SellerPage setPage={setPage} />
+      ) : (
+        <Buyerpage setPage={setPage} />
+      )}
     </div>
   );
 };
